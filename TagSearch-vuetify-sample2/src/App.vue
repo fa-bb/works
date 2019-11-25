@@ -1,10 +1,11 @@
 <template>
   <v-app>
     <v-content>
-      <inSelects/>
-      <panels/>
+      <inSelects :chips="chips" :items='testData'/>
+      <panels :arr="testData" />
     </v-content>
   </v-app>
+
 </template>
 
 <script>
@@ -18,9 +19,18 @@ export default {
     inSelects,
     panels,
   },
+  data:function(){
+    return{
+        chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
+        testData:['red','green','blue']
+    }
+  },
+  watch:{
+    chips: function(value,old){
+      console.log(value+" "+old)
+    }
+  }
+  
 
-  data: () => ({
-    //
-  }),
 };
 </script>

@@ -26,18 +26,16 @@
 
 <script>
   export default {
-    data () {
-      return {
-        chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
-        items: ['Streaming', 'Eating'],
-      }
+    props:{
+     chips:Array,
+     items:Array
     },
-
     methods: {
       remove (item) {
         this.chips.splice(this.chips.indexOf(item), 1)
         this.chips = [...this.chips]
+        this.$App.chips = this.chips 
       },
-    }
+    },
   }
 </script>
