@@ -26,8 +26,8 @@ export default {
     }
   },
   watch:{
-    chips: function(value,old){
-      console.log(value+" "+old)
+    chips: function(){
+      // console.log(value+" "+old)
     }
   }
   
