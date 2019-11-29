@@ -17,8 +17,10 @@ export default {
 
   data:function(){
     return{
-        chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
-        testData:['red','green','blue']
+        // chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
+        // testData:['red','green','blue']
+        chips: [],
+        testData:[]
     }
   }
 

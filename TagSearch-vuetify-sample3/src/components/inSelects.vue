@@ -4,6 +4,7 @@
     <v-combobox
       v-model="chips"
       :items="items"
+      @input="getAnswer"
       chips
       clearable
       label="input Your Search keywords"
@@ -20,7 +21,7 @@
       @click:close="remove(item)"
       >
       <strong>{{ item }}</strong>&nbsp;
-      <span>(interest)</span>
+      <!-- <span>(interest)</span> -->
         </v-chip>
       </template>
     </v-combobox>
@@ -33,6 +34,7 @@
 
 <script>
 import panels from './panels';
+import axios from 'axios';
 
   export default {
     components:{
@@ -46,6 +48,28 @@ import panels from './panels';
       remove (item) {
         this.chips.splice(this.chips.indexOf(item), 1)
         this.chips = [...this.chips]
+      },
+      getAnswer: function(){
+
+        var keyword = this.chips.join(" ");
+        console.log(keyword)
+
+        var vm = this
+
+        var params = { page: 1, per_page:20, query: keyword}
+        axios.get('https://qiita.com/api/v2/items',{params})
+          .then(function(response){
+            console.log(response)
+            vm.items = response.data
+            console.log("form this.items"+vm.items)
+          })
+          .catch(function(error){
+            console.log(error)
+          })
+          .finally(function(){
+            console.log('Search finish')
+          })
+
       }
     }
   }
