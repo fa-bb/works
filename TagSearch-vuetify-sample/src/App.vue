@@ -1,26 +1,29 @@
 <template>
   <v-app>
-    <v-content>
-      <inSelects/>
-      <panels/>
-    </v-content>
+    <inSelects :chips="chips" :items='testData'/>
   </v-app>
+
 </template>
 
 <script>
 import inSelects from './components/inSelects';
-import panels from './components/panels';
 
 export default {
   name: 'App',
 
   components: {
     inSelects,
-    panels,
   },
 
-  data: () => ({
-    //
-  }),
+  data:function(){
+    return{
+        // chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
+        // testData:['red','green','blue']
+        chips: [],
+        testData:[]
+    }
+  }
+
 };
+
 </script>
