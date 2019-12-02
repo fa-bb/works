@@ -3,10 +3,10 @@
   <v-container>
     <v-combobox
       v-model="chips"
-      :items="items"
-      @input="getAnswer"
+      :items="suggest"
       chips
       clearable
+      @input="getAnswer"
       label="input Your Search keywords"
       multiple
       prepend-icon=""
@@ -42,7 +42,8 @@ import axios from 'axios';
     },
     props:{
      chips:Array,
-     items:Array
+     items:Array,
+     suggest:Array
     },
     methods: {
       remove (item) {

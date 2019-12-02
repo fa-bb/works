@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <inSelects :chips="chips" :items='testData'/>
+    <inSelects :chips="chips" :items='testData' :suggest='suggestions'/>
   </v-app>
 
 </template>
@@ -20,7 +20,8 @@ export default {
         // chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
         // testData:['red','green','blue']
         chips: [],
-        testData:[]
+        testData:[],
+        suggestions:["Java","JavaScript","ruby","swift","rails","PHP","Android","Dart","vim"]
     }
   }
 
