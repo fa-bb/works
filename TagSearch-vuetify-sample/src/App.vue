@@ -7,6 +7,7 @@
 
 <script>
 import inSelects from './components/inSelects';
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -17,12 +18,31 @@ export default {
 
   data:function(){
     return{
-        // chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
-        // testData:['red','green','blue']
         chips: [],
         testData:[],
-        suggestions:["Java","JavaScript","ruby","swift","rails","PHP","Android","Dart","vim"]
+        suggestions:[]
     }
+  },
+  created: function(){
+    var vm = this
+    console.log('start created')
+    var params = { page: 1, per_page:30, sort: "count"}
+    axios.get('https://qiita.com/api/v2/tags',{params})
+      .then(function(response){
+
+        for(let i of response.data) {
+          vm.suggestions.push(i.id)
+        }
+        console.log(vm.suggestions)
+
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+      .finally(function(){
+        console.log('conputed finish')
+      })
+
   }
 
 };
