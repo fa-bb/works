@@ -2,8 +2,8 @@
 
   <v-container>
     <v-combobox
-      v-model="chips"
-      :items="suggest"
+      v-model="chipsdata"
+      :items="suggestdata"
       chips
       clearable
       @input="getAnswer"
@@ -21,12 +21,11 @@
       @click:close="remove(item)"
       >
       <strong>{{ item }}</strong>&nbsp;
-      <!-- <span>(interest)</span> -->
         </v-chip>
       </template>
     </v-combobox>
   
-    <panels :arr="items" />
+    <panels :arr="itemsdata" />
 
   </v-container>
 
@@ -45,14 +44,24 @@ import axios from 'axios';
      items:Array,
      suggest:Array
     },
+    data () {
+      return {
+        chipsdata: this.chips,
+        itemsdata: this.items,
+        suggestdata: this.suggest
+      }
+    },
     methods: {
       remove (item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
+        this.chipsdata.splice(this.chipsdata.indexOf(item), 1)
+        this.chipsdata = [...this.chipsdata]
       },
+
       getAnswer: function(){
 
-        var keyword = this.chips.join(" ");
+        console.log(this.chipsdata)
+
+        var keyword = this.chipsdata.join(" ");
         console.log(keyword)
 
         var vm = this
@@ -61,8 +70,8 @@ import axios from 'axios';
         axios.get('https://qiita.com/api/v2/items',{params})
           .then(function(response){
             console.log(response)
-            vm.items = response.data
-            console.log("form this.items"+vm.items)
+            vm.itemsdata = response.data
+            console.log("form this.items"+vm.itemsdata)
           })
           .catch(function(error){
             console.log(error)
